@@ -1,0 +1,70 @@
+
+
+{#1 导入过滤器#}
+{#{% load oddfilter %}#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>django自带模板</title>
+</head>
+<body>
+
+    <h1>django 模板自带的过滤器  函数</h1>
+    {# django 模板自带的过滤器  函数 #}
+    <h3>{{ safe_data | safe }}</h3>
+    <h3>{{ safe_data }}</h3>
+    "今天我学习了 <a href="#">黑马程序员</a>"
+    <br>
+    {#  转义 --->  &lt;   &nbsp;   &gt;#}
+    "今天我学习了 &lt; a href="#"&gt;黑马  &nbsp; &nbsp; 程序员&lt;/a&gt;"
+
+    <h4>{{ data_list | length }}</h4>
+    <h4>{{ gender | default:"性别不详" }}</h4>
+    <h4>{{ today_date | date:'Y-m-d' }}</h4>
+        {#  变量|过滤器:参数  使用自定义过滤器  #}
+{#    <h2>{{ num | odd }}</h2>#}
+
+    <hr>
+    <h1>django自带模板-----> render渲染模板文件</h1>
+    <h4>{{ age }}</h4>
+    <h4>{{ name }}</h4>
+    <h4>{{ data_list.0 }}</h4>
+    <h4>{{ stu_dict.work }}</h4>
+
+    <hr>
+    {# h4 自带默认换行#}
+    {% for item in data_list %}
+{#        <h4>{{ forloop.counter }}-----{{ item }}</h4>#}
+        <h4>{{ forloop.counter0 }}-----{{ item }}</h4>
+{#        <h4>{{ forloop.revcounter }}-----{{ item }}</h4>#}
+
+        {# 判断列表是否为空 #}
+        {% empty %}
+        <h1>暂无数据！请稍后再来！</h1>
+
+    {% endfor %}
+
+    <hr>
+    {% if age == 18 %}
+        <p>成年人</p>
+    {% elif age == 30 %}
+        <p>中年人</p>
+    {% else %}
+        <p>老年人</p>
+    {% endif %}
+
+
+    {% comment %}
+    django自带的模板语法:
+        1. 模板变量: {{ }}
+        2. for渲染  {%for i in data%}   {{forloop.counter}}  {%empty%} {%endfor%}
+        3. 条件渲染  {% if age == 10 %} {% endif %}
+                    千万注意: 符号的左右两边必须有空格
+    {% endcomment %}
+
+
+
+</body>
+</html>
